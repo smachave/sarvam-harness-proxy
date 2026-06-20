@@ -33,52 +33,7 @@ A project for setting up and running agents with Sarvam AI models through LiteLL
    litellm --config litellm.yaml --port 4000
    ```
 
-## Detailed Setup
-
-### Step 1: Install Dependencies
-
-Install the required Python package:
-```bash
-pip install litellm
-```
-
-### Step 2: Configure API Key
-
-Set your Sarvam API key as an environment variable:
-
-**Linux/macOS:**
-```bash
-export SARVAM_API_KEY="your_api_key_here"
-```
-
-**Windows (Command Prompt):**
-```cmd
-set SARVAM_API_KEY="your_api_key_here"
-```
-
-**Windows (PowerShell):**
-```powershell
-$env:SARVAM_API_KEY="your_api_key_here"
-```
-
-To make the environment variable persistent, add it to your shell profile (`.bashrc`, `.zshrc`, etc.) or system environment variables.
-
-### Step 3: Clone the Repository
-
-```bash
-git clone https://github.com/smachave/sarvam-agent-harness.git
-cd sarvam-agent-harness
-```
-
-### Step 4: Launch LiteLLM
-
-Start LiteLLM using the configuration file:
-
-```bash
-litellm --config litellm.yaml --port 4000
-```
-
-The `litellm.yaml` file should contain your Sarvam model configuration.
+The `litellm.yaml` file contains your Sarvam model configuration. The user will manage the rest.
 
 ## Usage Examples
 
@@ -89,70 +44,39 @@ curl -X POST http://localhost:4000/chat/completions \
   -d '{"messages": [{"role": "user", "content": "Hello, how are you?"}]}'
 ```
 
-### Streaming Response
-```bash
-curl -X POST http://localhost:4000/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"messages": [{"role": "user", "content": "Tell me a story"}], "stream": true}'
+## Pi Agent Configuration
+
+This project integrates with Pi Agent for enhanced AI capabilities. Pi Agent is configured through the `~/.pi/agent/models.json` file, which defines available AI providers and models.
+
+For example, here's the actual Sarvam provider configuration from your `~/.pi/agent/models.json`:
+
+```json
+{
+  "sarvam": {
+    "api": "openai-completions",
+    "apiKey": "sk-1234",
+    "baseUrl": "http://localhost:4000/v1",
+    "models": [
+      {
+        "id": "sarvam-105b",
+        "name": "Sarvam 105B"
+      },
+      {
+        "id": "sarvam-30b",
+        "name": "Sarvam 30B"
+      }
+    ]
+  }
+}
 ```
 
-### Custom Parameters
-```bash
-curl -X POST http://localhost:4000/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"messages": [{"role": "user", "content": "Explain quantum computing"}], "temperature": 0.7, "max_tokens": 500}'
-```
+### Available Models
 
-## Configuration Options
+Based on the current configuration, these Sarvam AI models are available:
 
-LiteLLM supports various configuration options. View all available options with:
-
-```bash
-litellm --help
-```
-
-Common options include:
-- `--temperature`: Control randomness (0.0 to 2.0)
-- `--max_tokens`: Maximum response length
-- `--stream`: Enable streaming responses
-- `--api_base`: Custom API endpoint (if needed)
-
-## Troubleshooting
-
-### API Key Not Working
-- Verify your API key is set correctly: `echo $SARVAM_API_KEY`
-- Ensure the API key is valid and not expired
-- Check that you have the necessary permissions for the model
-
-### Model Not Found
-- Verify the model name is correct: `litellm --list-models`
-- Ensure you have access to the specific Sarvam model
-- Check your API plan/subscription level
-
-### Connection Issues
-- Verify internet connectivity
-- Check if the Sarvam API endpoint is accessible
-- Try with a simpler model first
-
-### Common Errors
-
-**"Invalid API Key"**
-- Double-check the API key format
-- Ensure no extra spaces or quotes
-
-**"Model not found"**
-- List available models: `litellm --list-models`
-- Verify model name spelling
-
-**"Rate limit exceeded"**
-- Reduce request frequency
-- Check your API plan limits
-
-## Getting Help
-
-- Check the [LiteLLM documentation](https://docs.litellm.ai/)
-- Review Sarvam AI's official documentation
-- File issues in the repository if you encounter bugs
+**Sarvam AI Models**:
+- Sarvam 105B
+- Sarvam 30B
 
 ## License
 
