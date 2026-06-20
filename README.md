@@ -39,9 +39,18 @@ The `litellm.yaml` file contains your Sarvam model configuration. The user will 
 
 ### Basic Chat Completion
 ```bash
-curl -X POST http://localhost:4000/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"messages": [{"role": "user", "content": "Hello, how are you?"}]}'
+curl --location 'http://0.0.0.0:4000/v1/chat/completions' \
+    --header 'Authorization: Bearer sk-1234' \
+    --header 'Content-Type: application/json' \
+    --data '{
+    "model": "sarvam-30b",
+    "messages": [
+        {
+        "role": "user",
+        "content": "what llm are you"
+        }
+    ]
+}'
 ```
 
 ## Pi Agent Configuration
