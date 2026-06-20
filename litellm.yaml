@@ -1,0 +1,16 @@
+model_list:
+  - model_name: sarvam-30b
+    litellm_params:
+      model: openai/sarvam-30b  # Changes provider prefix to openai
+      api_base: https://api.sarvam.ai/v1
+      api_key: os.environ/SARVAM_API_KEY
+
+  - model_name: sarvam-105b
+    litellm_params:
+      model: openai/sarvam-105b
+      api_base: https://api.sarvam.ai/v1
+      api_key: os.environ/SARVAM_API_KEY
+
+litellm_settings:
+  # Try both or ensure it's under callbacks
+  callbacks: ["sarvam_fix.proxy_handler_instance"]
