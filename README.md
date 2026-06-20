@@ -1,6 +1,6 @@
-# Sarvam Agent Harness
+# Sarvam Harness Proxy
 
-A project for setting up and running agents with Sarvam AI models through LiteLLM.
+A proxy harness for setting up and running agents with Sarvam AI models through LiteLLM.
 
 ## Quick Start
 
@@ -25,7 +25,7 @@ A project for setting up and running agents with Sarvam AI models through LiteLL
 3. **Clone this repository**
    ```bash
    git clone <repository_url>
-   cd sarvam-agent-harness
+   cd sarvam-harness-proxy
    ```
 
 4. **Launch litellm**
