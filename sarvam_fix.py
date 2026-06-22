@@ -6,7 +6,6 @@ logger = logging.getLogger("LiteLLM Proxy")
 
 class StripPartsForSarvam(CustomLogger):
     async def async_pre_call_hook(self, *args, **kwargs):
-        # Removed flush=True here
         logger.info("--- [HOOK TRIGGERED] Intercepting Request Payload ---")
         
         data = kwargs.get("data")
